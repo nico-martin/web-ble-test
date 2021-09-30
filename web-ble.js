@@ -7,6 +7,12 @@ let characteristics = [];
 
 const encoder = new TextEncoder();
 
+console.log(
+  encoder.encode(
+    "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+  )
+);
+
 const consoleLog = (string) => {
   const text = $console.innerText;
   console.log(string);
@@ -60,6 +66,7 @@ const startNotification = async (i) => {
 const writeValueAll = () => characteristics.map((char, i) => writeValue(i));
 
 const writeValue = async (i) => {
+  // writes 1 byte
   const time = new Date().getTime();
   consoleLog(`write ${characteristicUUIDs[i]}`);
 
@@ -73,6 +80,7 @@ const writeValueLongAll = () =>
   characteristics.map((char, i) => writeValueLong(i));
 
 const writeValueLong = async (i) => {
+  // writes 155 bytes
   const time = new Date().getTime();
   consoleLog(`write long ${characteristicUUIDs[i]}`);
 
