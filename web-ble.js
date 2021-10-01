@@ -6,11 +6,8 @@ const characteristicUUIDs = [0xff0b, 0xff0c, 0xff0d, 0xff0e];
 let characteristics = [];
 
 const encoder = new TextEncoder();
-
-console.log(
-  encoder.encode(
-    "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
-  )
+const largePayload = encoder.encode(
+  "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
 );
 
 const consoleLog = (string) => {
@@ -84,11 +81,7 @@ const writeValueLong = async (i) => {
   const time = new Date().getTime();
   consoleLog(`write long ${characteristicUUIDs[i]}`);
 
-  await characteristics[i].writeValue(
-    encoder.encode(
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
-    )
-  );
+  await characteristics[i].writeValue(largePayload);
   consoleLog(
     `write long done ${characteristicUUIDs[i]} - ${
       new Date().getTime() - time
